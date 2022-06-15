@@ -597,46 +597,46 @@ RCT_EXPORT_METHOD(getClinicalRecords:(NSDictionary *)input callback:(RCTResponse
     }
 }
 
-- (NSArray<NSString *> *)supportedEvents {
-    NSArray *types = @[
-        @"ActiveEnergyBurned",
-        @"BasalEnergyBurned",
-        @"Cycling",
-        @"HeartRate",
-        @"HeartRateVariabilitySDNN",
-        @"RestingHeartRate",
-        @"Running",
-        @"StairClimbing",
-        @"StepCount",
-        @"Swimming",
-        @"Vo2Max",
-        @"Walking",
-        @"Workout",
-        @"MindfulSession",
-        @"AllergyRecord",
-        @"ConditionRecord",
-        @"CoverageRecord",
-        @"ImmunizationRecord",
-        @"LabResultRecord",
-        @"MedicationRecord",
-        @"ProcedureRecord",
-        @"VitalSignRecord",
-        @"SleepAnalysis"
-    ];
+// - (NSArray<NSString *> *)supportedEvents {
+//     NSArray *types = @[
+//         @"ActiveEnergyBurned",
+//         @"BasalEnergyBurned",
+//         @"Cycling",
+//         @"HeartRate",
+//         @"HeartRateVariabilitySDNN",
+//         @"RestingHeartRate",
+//         @"Running",
+//         @"StairClimbing",
+//         @"StepCount",
+//         @"Swimming",
+//         @"Vo2Max",
+//         @"Walking",
+//         @"Workout",
+//         @"MindfulSession",
+//         @"AllergyRecord",
+//         @"ConditionRecord",
+//         @"CoverageRecord",
+//         @"ImmunizationRecord",
+//         @"LabResultRecord",
+//         @"MedicationRecord",
+//         @"ProcedureRecord",
+//         @"VitalSignRecord",
+//         @"SleepAnalysis"
+//     ];
     
-    NSArray *templates = @[@"healthKit:%@:new", @"healthKit:%@:failure", @"healthKit:%@:enabled", @"healthKit:%@:sample", @"healthKit:%@:setup:success", @"healthKit:%@:setup:failure"];
+//     NSArray *templates = @[@"healthKit:%@:new", @"healthKit:%@:failure", @"healthKit:%@:enabled", @"healthKit:%@:sample", @"healthKit:%@:setup:success", @"healthKit:%@:setup:failure"];
     
-    NSMutableArray *supportedEvents = [[NSMutableArray alloc] init];
+//     NSMutableArray *supportedEvents = [[NSMutableArray alloc] init];
 
-    for(NSString * type in types) {
-        for(NSString * template in templates) {
-            NSString *successEvent = [NSString stringWithFormat:template, type];
-            [supportedEvents addObject: successEvent];
-        }
-    }
-    [supportedEvents addObject: @"change:steps"];
-  return supportedEvents;
-}
+//     for(NSString * type in types) {
+//         for(NSString * template in templates) {
+//             NSString *successEvent = [NSString stringWithFormat:template, type];
+//             [supportedEvents addObject: successEvent];
+//         }
+//     }
+//     [supportedEvents addObject: @"change:steps"];
+//   return supportedEvents;
+// }
 
 - (void)getModuleInfo:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback
 {
@@ -702,7 +702,7 @@ RCT_EXPORT_METHOD(getClinicalRecords:(NSDictionary *)input callback:(RCTResponse
 
     [self _initializeHealthStore];
 
-    self.bridge = bridge;
+    // self.bridge = bridge;
 
     if ([HKHealthStore isHealthDataAvailable]) {
         NSArray *fitnessObservers = @[
