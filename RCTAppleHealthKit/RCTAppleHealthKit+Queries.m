@@ -865,7 +865,8 @@
             return;
         }
 
-        [self sendEventWithName:successEvent body:@{}];
+        // [self sendEventWithName:successEvent body:@{}];
+        [self.bridge.eventDispatcher sendAppEventWithName:successEvent body:@{}];
 
         completionHandler();
 
@@ -886,7 +887,8 @@
 
         [self.healthStore executeQuery:query];
 
-        [self sendEventWithName:successEvent body:@{}];
+        // [self sendEventWithName:successEvent body:@{}];
+        [self.bridge.eventDispatcher sendAppEventWithName:successEvent body:@{}];
     }];
 }
 
@@ -919,12 +921,15 @@
 
             NSLog(@"[HealthKit] An error happened when receiving a new sample - %@", error.localizedDescription);
             if(self.hasListeners) {
-                [self sendEventWithName:failureEvent body:@{}];
+                // [self sendEventWithName:failureEvent body:@{}];
+                [bridge.eventDispatcher sendAppEventWithName:failureEvent body:@{}];
             }
             return;
         }
         if(self.hasListeners) {
-            [self sendEventWithName:successEvent body:@{}];
+            // [self sendEventWithName:successEvent body:@{}];
+            // [self.bridge.eventDispatcher sendAppEventWithName:successEvent body:@{}];
+            [bridge.eventDispatcher sendAppEventWithName:successEvent body:@{}];
         }
         completionHandler();
 
@@ -941,14 +946,16 @@
         if (error) {
             NSLog(@"[HealthKit] An error happened when setting up background observer - %@", error.localizedDescription);
             if(self.hasListeners) {
-                [self sendEventWithName:failureEvent body:@{}];
-            }
+                // [self sendEventWithName:failureEvent body:@{}];
+
+[bridge.eventDispatcher sendAppEventWithName:failureEvent body:@{}];            }
             return;
         }
 
         [self.healthStore executeQuery:query];
         if(self.hasListeners) {
-            [self sendEventWithName:successEvent body:@{}];
+            // [self sendEventWithName:successEvent body:@{}];
+            [bridge.eventDispatcher sendAppEventWithName:successEvent body:@{}];
         }
         }];
 }
